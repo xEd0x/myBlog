@@ -1,0 +1,46 @@
+body {
+	background: #FFFFFF;
+	color: #666;
+	font-family: Segoe UI;
+	font-size: 11px;
+}
+
+body a {
+	cursor: default;
+}
+
+a:link {
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+	text-decoration: none;
+	color: #222;
+}
+
+a:visited {
+	color: #000000;
+}
+
+a:hover {
+	text-shadow : 1px 1px 1px #888;
+}
+
+input {
+	background: #DDDDDD;
+	color: #666666;
+	border: 1px solid;
+}
+
+#num {
+	border: 1px solid #FFFFFF;
+}
+
+textarea {
+	background: #DDDDDD;
+	color: #666666;
+	border: 1px solid;
+}
+
+select {
+	background: #DDDDDD;
+	color: #666666;
+	border: 1px solid;
+}
