@@ -62,13 +62,28 @@ function bbcode ($code) {
 	
 	$cods = str_replace ("\n", "<br>", $cods);
 	
-	if (preg_match ("/\[url\=(.+)\](.+?)\[\/url\]/i", $cods, $matches)) {
-		$cods = str_replace ("[url={$matches [1]}]{$matches [2]}[/url]", "<a href = '{$matches [1]}'>{$matches [2]}</a>", $cods);
-	}
-	
 	if (preg_match ("/\[img\](.+)\[\/img\]/i", $cods, $matches)) {
 		$cods = str_replace ("[img]{$matches [1]}[/img]", "<img src = '{$matches [1]}'>", $cods);
 	}
+	
+	/**
+	
+	* Gli url e i video di youtube, sono stati scritti da KinG InFeT
+	
+	*/
+	$search = array(
+		"/\\[url\\](.*?)\\[\\/url\\]/is",
+		"/\\[url\\=(.*?)\\](.*?)\\[\\/url\\]/is",
+		"/\\[youtube\\]http\:\/\/www\.youtube\.com\/watch\?v\=(.*?)\\[\\/youtube\\]/is"
+	);
+ 
+	$replace = array(
+		"<a target=\"_blank\" href=\"$1\">$1</a>",
+		"<a target=\"_blank\" href=\"$1\">$2</a>",
+		"<br /><iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>"
+	);
+	
+	$cods = preg_replace ($search, $replace, $cods);
 	
 	return $cods;
 }

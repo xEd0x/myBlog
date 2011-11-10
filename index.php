@@ -8,7 +8,7 @@
 * * * * * * * * * * * */
 
 define ('AUTHOR', 'xEdox');
-define ('VERSION', '0.7');
+define ('VERSION', '1.0');
 
 include ('config.php');
 include ('style/header.php');
@@ -52,7 +52,7 @@ while ($_TEXT = mysql_fetch_array ($ris, MYSQL_ASSOC)) {
 	print "[{$_TEXT ['date']} · {$_TEXT ['time']}] ~ <a onClick = 'showPost ({$_TEXT ['id']});' href = '#'>{$_TEXT ['title']}</a>";
 	
 	if (checkCookie ()) {
-		print " [<a href = 'system/blog.php?delete&id={$_TEXT ['id']}' onclick = 'confirm (\"Sicuro?\");'>x</a>] [<a href = 'system/edit.php?id={$_TEXT ['id']}'>edit</a>]\n";
+		print " [<a  onClick = 'removePost ({$_TEXT ['id']});' href = '#'>x</a>] [<a href = 'system/edit.php?id={$_TEXT ['id']}'>edit</a>]\n";
 	}
 	
 	print "<br>\n";
