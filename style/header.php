@@ -20,37 +20,9 @@ $theme = mysql_fetch_array ($ris, MYSQL_ASSOC);
 	<head>
 		<meta http-equiv = "Content-Type" content = "text/html; charset=iso-8859-1">
 		<link rel = "stylesheet" href = "<?php print 'style/themes/' . $theme ['theme']; ?>" type = "text/css">
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type = "text/javascript" src = "http://code.jquery.com/jquery-latest.js"></script>
+		<script type = "text/javascript" src = "style/main.js"></script>
 		<title>myBlog</title>
-		<script>
-var myRequest = null;
-
-function CreateXmlHttpReq (handler) {
-	var xmlhttp = null;
-	xmlhttp     = new XMLHttpRequest();
-  
-	xmlhttp.onreadystatechange = handler;
-	return xmlhttp;
-}
-
-function myHandler () {
-	if (myRequest.readyState == 4 && myRequest.status == 200) {
-		div = document.getElementById ('post');
-		div.style.display = 'none';
-
-		div.innerHTML = myRequest.responseText;
-		$("div").show ("slow");
-
-	}
-}
-
-function showPost (id) {
-	myRequest = CreateXmlHttpReq (myHandler);
-
-	myRequest.open ("GET", "show.php?id=" + id);
-	myRequest.send (null);
-}
-</script>
 	</head>
 	<body style = "display: none" onLoad = "$('body').fadeIn(1500);">
 	<br>
