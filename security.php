@@ -40,7 +40,8 @@ function displayError ($errstr) {
 	$ris   = mysql_query ($query);
 
 	$theme = mysql_fetch_array ($ris, MYSQL_ASSOC);
-	$page = <<<ERROR
+	
+	return <<<ERROR
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -55,8 +56,9 @@ function displayError ($errstr) {
 	<br><br>
 	<hr>
 	<a href = '../index.php'>Home</a> &nbsp; &nbsp; <a href = '../login.php'>Login</a> &nbsp; &nbsp; <br><br>
+	<br><br>{$errstr}
+	</body>
+</html>
 ERROR;
-	
-	print $page . "<br><br>{$errstr}\n</body></html>";
 }
 ?>
