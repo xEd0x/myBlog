@@ -18,7 +18,7 @@ if ($_GET ['mode'] == 'logout') {
 		header ("Location: ../index.php");
 	}
 	else {
-		die ('Not logged in.');
+		die (displayError ('Not logged in.'));
 	}
 }
 
@@ -31,7 +31,7 @@ if (isset ($_REQUEST ['username'])) {
 	$password = clearRequest ('password');
 	$query = "SELECT `password` FROM `admin` WHERE `username` = '{$username}'";
 	if (!mysql_query ($query, $db)) {
-		die (mysql_error ());
+		die (displayError (mysql_error ()));
 	}
 	else {
 		$fetch = mysql_fetch_array (mysql_query ($query, $db), MYSQL_ASSOC);
@@ -49,7 +49,7 @@ if (isset ($_REQUEST ['username'])) {
 
 if (isset ($_REQUEST ['change'])) {
 	if (!checkCookie ()) {
-		die ("Fail.");
+		die (displayError ('Fail.'));
 	}
 	
 	$pass1 = clearRequest ('pass1');
@@ -59,7 +59,7 @@ if (isset ($_REQUEST ['change'])) {
 		$pass = sha1 (md5 ($pass1));
 		$query = "UPDATE `admin` SET `password` = '{$pass}'";
 		if (!mysql_query ($query, $db)) {
-			die (mysql_error ());
+			die (displayError (mysql_error ()));
 		}
 		else {
 			setcookie ('myblog_username', '', time () - 1, '/');
@@ -71,7 +71,7 @@ if (isset ($_REQUEST ['change'])) {
 
 if (isset ($_REQUEST ['theme'])) {
 	if (!checkCookie ()) {
-		die ("Fail.");
+		die (displayError ('Fail.'));
 	}
 	
 	$theme = clearRequest ('theme');
@@ -88,12 +88,12 @@ if (isset ($_REQUEST ['theme'])) {
 	
 	
 	if (!in_array ($theme, $types)) {
-		die ('Invalid theme.');
+		die (displayError ('Invalid theme.'));
 	}
 	
 	$query = "UPDATE `admin` SET `theme` = '{$theme}'";
 	if (!mysql_query ($query, $db)) {
-		die (mysql_error ());
+		die (displayError (mysql_error ()));
 	}
 	else {
 		header ("Location: /index.php");
