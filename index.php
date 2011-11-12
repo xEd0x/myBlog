@@ -8,7 +8,7 @@
 * * * * * * * * * * * */
 
 define ('AUTHOR', 'xEdox');
-define ('VERSION', '1.0');
+define ('VERSION', '1.1');
 
 include ('config.php');
 include ('style/header.php');
