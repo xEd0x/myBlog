@@ -62,15 +62,25 @@ function bbcode ($code) {
 	
 	$cods = str_replace ("\n", "<br>", $cods);
 	
+	if (preg_match ("/\[spoiler\](.*?)\[\/spoiler\]/", $cods, $matches)) {
+		$cods = str_replace ("[spoiler]{$matches [1]}[/spoiler]", "<b>SPOILER</b> (<a href = '#' onClick = 'spoil (\"spoiler\");'>Clicca per visualizzare</a>)<div id = 'spoiler'><br>{$matches [1]}<br><br></div>", $cods);
+	}
+	
+	if (preg_match ("/\[code\](.*?)\[\/code\]/", $cods, $matches)) {
+		$source = stripCode ($matches [1]);
+		$cods   = str_replace ("[code]{$matches [1]}[/code]", "<table id = 'code'>\n<tr>\n<td>\n<b>CODE:</b><br><br><pre>{$source}</pre>\n</td>\n</tr>\n</table>", $cods);
+	}
+	
 	if (preg_match ("/\[img\](.+)\[\/img\]/i", $cods, $matches)) {
 		$cods = str_replace ("[img]{$matches [1]}[/img]", "<img src = '{$matches [1]}'>", $cods);
 	}
 	
 	/**
-	
+	*
 	* Gli url e i video di youtube, sono stati scritti da KinG InFeT
-	
+	*
 	*/
+	
 	$search = array(
 		"/\\[url\\](.*?)\\[\\/url\\]/is",
 		"/\\[url\\=(.*?)\\](.*?)\\[\\/url\\]/is",
@@ -86,6 +96,11 @@ function bbcode ($code) {
 	$cods = preg_replace ($search, $replace, $cods);
 	
 	return $cods;
+}
+
+function stripCode ($code) {
+	$source = str_replace ("<br>", "", $code);
+	return $source;
 }
 ?>
 	</body>
