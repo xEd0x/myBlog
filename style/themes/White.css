@@ -44,3 +44,18 @@ select {
 	color: #666666;
 	border: 1px solid;
 }
+
+#code  {
+	background: #DDDDDD;
+	color: 000000;
+	border: 1px solid;
+	width: 60%;
+}
+
+#spoiler {
+	background: #DDDDDD;
+	color: 000000;
+	border: 1px solid;
+	width: 60%;
+	visibility: hidden;
+}
