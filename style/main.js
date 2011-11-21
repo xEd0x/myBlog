@@ -39,3 +39,14 @@ function removePost (id) {
 		window.location = 'system/blog.php?delete&id=' + id;
 	}
 }
+
+function spoil (spoiler) {
+	var el = document.getElementById (spoiler);
+	
+	if (el.style.visibility == 'visible') {
+		el.style.visibility = 'hidden';
+	}
+	else {
+		el.style.visibility = 'visible';
+	}
+}
